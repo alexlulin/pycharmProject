@@ -17,3 +17,10 @@ def depart_add(request):
     title=request.POST.get("title")
     models.Department.objects.create(title=title)
     return redirect("/depart/add/")
+
+def depart_del(request):
+    """删除部门"""
+    # 获取id
+    nid=request.GET.get("nid")
+    models.Department.objects.filter(id=nid).delete()
+    return redirect("/depart/list/")

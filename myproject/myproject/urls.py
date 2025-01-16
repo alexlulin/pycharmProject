@@ -22,4 +22,5 @@ urlpatterns = [
     #path('admin/', admin.site.urls),
     path('depart/list/', views.depart_list),
     path('depart/add/', views.depart_add),
+    path('depart/del/', views.depart_del),
 ]
