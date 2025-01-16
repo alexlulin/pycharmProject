@@ -9,10 +9,10 @@ def depart_list(request):
 
 def depart_add(request):
     """添加部门"""
-    if request.method == "GET":
+    #if request.method == "POST":
     #name=models.Department.objects.get("title")
     #models.Department.objects.create(title=name)
-        return render(request,"depart_add.html")
+     #   return render(request,"depart_add.html")
 
     title=request.POST.get("title")
     models.Department.objects.create(title=title)
@@ -23,4 +23,14 @@ def depart_del(request):
     # 获取id
     nid=request.GET.get("nid")
     models.Department.objects.filter(id=nid).delete()
+    return redirect("/depart/list/")
+
+def depart_edit(request,nid):
+    """编辑部门"""
+    if request.method == "GET":
+        row_object=models.Department.objects.filter(id=nid).first()
+        #print(row_object.id,row_object.title)
+        return render(request,"depart_edit.html",{"row_object":row_object})
+
+    models.Department.objects.filter(id=nid).update(title=request.POST.get("title"))
     return redirect("/depart/list/")

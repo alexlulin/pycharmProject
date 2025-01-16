@@ -5,11 +5,6 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <!--style>
-        .navbar{
-            border-radius: 0;
-        }
-    </--style-->
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -24,9 +19,7 @@
       </button>
       <a class="navbar-brand" href="#">联通员工管理系统</a>
     </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
           <li><a href="/depart/list/">部门管理</a></li>
           <li><a href="#">Link</a></li>
@@ -44,67 +37,26 @@
         </li>
       </ul>
     </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-<div>
+  </div>
     <div class="container">
-        <div style="margin-bottom: 10px">
-            <a class="btn btn-primary" href="/depart/add/">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                新建部门</a>
-        </div>
         <div class="panel panel-default">
         <div class="panel-heading">
             <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-            部门列表</div>
-
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>名称</th>
-          <th>操作</th>
-        </tr>
-      </thead>
-      <tbody>
-      {% for obj in queryset %}
-        <tr>
-          <th>{{ obj.id }}</th>
-          <td>{{ obj.title }}</td>
-          <td>
-              <a class="btn btn-primary btn-xs"href="/depart/{{ obj.id }}/edit/">编辑</a>
-              <a class="btn btn-danger btn-xs" href="/depart/del/?nid={{ obj.id }}">删除</a>
-          </td>
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table>
+            编辑部门</div>
+            <form method="post" class="/depart/{{ row_object.id }}/edit/">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" name="title" placeholder="名称" value="{{ row_object.title }}">新部门名称
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="保存">
+                </div>
+            </form>
         </div>
-</div>
-
-<nav aria-label="Page navigation">
-    <div class="container">
-  <ul class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-        </div>
+    </div>
 </nav>
+
 <script src="{% static 'js/bootstrap.js' %} "></script>
 <script src="{% static 'css/bootstrap.css' %}"></script>
-</div>
 </body>
 </html>
