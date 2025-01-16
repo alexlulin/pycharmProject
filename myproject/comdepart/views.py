@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from comdepart import models
 # Create your views here.
 def depart_list(request):
@@ -9,6 +9,11 @@ def depart_list(request):
 
 def depart_add(request):
     """添加部门"""
-    name=models.Department.objects.get("title")
-    models.Department.objects.create(title=name)
-    return render(request,"depart_add.html")
+    if request.method == "GET":
+    #name=models.Department.objects.get("title")
+    #models.Department.objects.create(title=name)
+        return render(request,"depart_add.html")
+
+    title=request.POST.get("title")
+    models.Department.objects.create(title=title)
+    return redirect("/depart/add/")
