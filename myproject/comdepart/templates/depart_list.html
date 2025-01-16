@@ -49,7 +49,7 @@
 <div>
     <div class="container">
         <div style="margin-bottom: 10px">
-            <a class="btn btn-primary" href="#">
+            <a class="btn btn-primary" href="/depart/add/">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 新建部门</a>
         </div>
@@ -61,31 +61,22 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
+          <th>ID</th>
+          <th>名称</th>
+          <th>操作</th>
         </tr>
       </thead>
       <tbody>
+      {% for obj in queryset %}
         <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+          <th>{{ obj.id }}</th>
+          <td>{{ obj.title }}</td>
+          <td>
+              <a class="btn btn-primary btn-xs">编辑</a>
+              <a class="btn btn-danger btn-xs">删除</a>
+          </td>
         </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
+      {% endfor %}
       </tbody>
     </table>
         </div>
@@ -114,5 +105,6 @@
 </nav>
 <script src="{% static 'js/bootstrap.js' %} "></script>
 <script src="{% static 'css/bootstrap.css' %}"></script>
+</div>
 </body>
 </html>
