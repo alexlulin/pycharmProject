@@ -41,3 +41,24 @@ def user_list(request):
     #for obj in queryset:
     #  print(obj.id,obj.name,obj.age,obj.password,obj.create_time.strftime("%Y-%m-%d"),obj.get_gender_display(),obj.depart)
     return render(request,'user_list.html',{"queryset":queryset})
+
+def user_add(request):
+    """人员新增 （原始方法）"""
+    if request.method == "GET":
+        context={
+            'gender_choices':models.UserInfo.gender_choices,
+            'depart_list':models.Department.objects.all()
+        }
+        return render(request,"user_add.html",context)
+    elif request.method == "POST":
+    # 获取用户提交的数据
+        #id=request.POST.get("id")
+        user=request.POST.get("user")
+        pwd=request.POST.get("pwd")
+        age=request.POST.get("age")
+        ac=request.POST.get("ac")
+        ctime=request.POST.get("ctime")
+        gd=request.POST.get("gd")
+        dp=request.POST.get("dp")
+        models.UserInfo.objects.create(id=id,name=user,password=pwd,age=age,account=ac,create_time=ctime,gender=gd,depart_id=dp)
+        return redirect("/user/list/")
