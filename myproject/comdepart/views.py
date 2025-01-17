@@ -9,14 +9,14 @@ def depart_list(request):
 
 def depart_add(request):
     """添加部门"""
-    #if request.method == "POST":
-    #name=models.Department.objects.get("title")
-    #models.Department.objects.create(title=name)
-     #   return render(request,"depart_add.html")
-
+    if request.method == "GET":
+        return render(request, "depart_add.html")
+    #通过页面post 方式获取 title
     title=request.POST.get("title")
+    #保存到数据库
     models.Department.objects.create(title=title)
-    return redirect("/depart/add/")
+    #重定向回部门列表
+    return redirect("/depart/list/")
 
 def depart_del(request):
     """删除部门"""
@@ -34,3 +34,10 @@ def depart_edit(request,nid):
 
     models.Department.objects.filter(id=nid).update(title=request.POST.get("title"))
     return redirect("/depart/list/")
+
+def user_list(request):
+    """人员列表"""
+    queryset=models.UserInfo.objects.all()
+    #for obj in queryset:
+    #  print(obj.id,obj.name,obj.age,obj.password,obj.create_time.strftime("%Y-%m-%d"),obj.get_gender_display(),obj.depart)
+    return render(request,'user_list.html',{"queryset":queryset})
