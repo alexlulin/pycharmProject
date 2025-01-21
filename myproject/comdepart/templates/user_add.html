@@ -44,7 +44,7 @@
                     <label>部门</label>
                     <select class="form-control" name="dp">
                         {% for item in depart_list %}
-                            <option value="{{ item.id }}">{{ item.title }}</option>
+                            <option value="{{ item.depart_id.id }}">{{ item.depart_id.title }}</option>
                         {% endfor %}
                     </select>
                 </div>

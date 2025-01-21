@@ -38,8 +38,8 @@ def depart_edit(request,nid):
 def user_list(request):
     """人员列表"""
     queryset=models.UserInfo.objects.all()
-    #for obj in queryset:
-    #  print(obj.id,obj.name,obj.age,obj.password,obj.create_time.strftime("%Y-%m-%d"),obj.get_gender_display(),obj.depart)
+    for obj in queryset:
+        print(obj.id,obj.name,obj.age,obj.password,obj.create_time.strftime("%Y-%m-%d"),obj.get_gender_display(),obj.depart_id.title)
     return render(request,'user_list.html',{"queryset":queryset})
 
 def user_add(request):
