@@ -8,10 +8,6 @@
             </div>
             <form method="post" action="/user/add/">
                 {% csrf_token %}
-                {% comment %}<div class="form-group">
-                    <label><编号></label>
-                    <input type="text" class="form-control" name="id" placeholder="编号"/>
-                </div>{% endcomment %}
                 <div class="form-group">
                     <label>姓名</label>
                     <input type="text" class="form-control" name="user" placeholder="姓名"/>
@@ -44,7 +40,7 @@
                     <label>部门</label>
                     <select class="form-control" name="dp">
                         {% for item in depart_list %}
-                            <option value="{{ item.depart_id.id }}">{{ item.depart_id.title }}</option>
+                            <option value="{{ item.id }}">{{ item.title }}</option>
                         {% endfor %}
                     </select>
                 </div>
